@@ -1,8 +1,8 @@
 "use client"
 import React from 'react'
-import { Button, Stack } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Col, Row } from 'react-bootstrap';
 
 
 
@@ -35,13 +35,15 @@ const feed = () => {
   return (
     <div>
     <div>
-      {currentLaunches.map((launch) => (
-        <div key={launch.flight_number}>
-          <div>{launch.rocket.rocket_name}</div>
-          <div>{launch.launch_date_utc}</div>
-          {/* Add more data fields as needed */}
-        </div>
-      ))}
+    <Row>
+        {currentLaunches.map((launch) => (
+          <Col xs={12} md={6} lg={4} key={launch.flight_number}>
+            <div>{launch.rocket.rocket_name}</div>
+            <div>{launch.launch_date_utc}</div>
+            {/* Add more data fields as needed */}
+          </Col>
+        ))}
+      </Row>
     </div>
 
     {/* Pagination controls */}
