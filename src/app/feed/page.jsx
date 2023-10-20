@@ -22,7 +22,7 @@ const Feed = () => {
         const response = await axios.get('https://api.spacexdata.com/v3/launches');
         setLaunches(response.data);
       } catch (error) {
-        console.error('Error fetching data', error);
+        console.error('Error  data', error);
       }
     };
 
@@ -49,23 +49,19 @@ const Feed = () => {
       );
     }
 
-    // Filter by Launch Date
     if (lastYearSelected) {
-      // Filter launches from the last year
       const lastYear = new Date();
       lastYear.setFullYear(lastYear.getFullYear() - 1);
       filteredLaunches = filteredLaunches.filter((launch) =>
         new Date(launch.launch_date_utc) > lastYear
       );
     } else if (lastMonthSelected) {
-      // Filter launches from the last month
       const lastMonth = new Date();
       lastMonth.setMonth(lastMonth.getMonth() - 1);
       filteredLaunches = filteredLaunches.filter((launch) =>
         new Date(launch.launch_date_utc) > lastMonth
       );
     } else if (lastWeekSelected) {
-      // Filter launches from the last week
       const lastWeek = new Date();
       lastWeek.setDate(lastWeek.getDate() - 7);
       filteredLaunches = filteredLaunches.filter((launch) =>
@@ -137,7 +133,7 @@ const Feed = () => {
 
             <Col xs={12} md={6} lg={6}>
               <Row>
-                
+
                 <Col xs={12} md={6} lg={6}>
                   <Form.Select
                     size="sm"
@@ -171,8 +167,8 @@ const Feed = () => {
                 <div className='single-lounch-div'>
                   <div className='img-date-name-div'>
                       <img className='rocke-image' src={launch.links.mission_patch_small} width={100} height={100} alt="" />
-                      <p>Date: {formatDate(launch.launch_date_local)}, <span>{launch.launch_year}</span></p>
-                      <h5>{launch.mission_name}</h5>
+                      <p>Launch Date: <span className='date-year'>{formatDate(launch.launch_date_local)}, <span>{launch.launch_year}</span></span></p>
+                      <h5 className='mission-name'>{launch.mission_name}</h5>
                       <p>{launch.rocket.rocket_name}</p>
                   </div>
                   <div className='launch-stat-div'>
@@ -190,9 +186,9 @@ const Feed = () => {
           </Row>
         </div>
 
-        <div>
+        <div className='paginations-div'>
           {Array.from({ length: Math.ceil(filterLaunches().length / itemsPerPage) }).map((_, index) => (
-            <button key={index} onClick={() => paginate(index + 1)}>
+            <button className='paginations-btn' key={index} onClick={() => paginate(index + 1)}>
               {index + 1}
             </button>
           ))}

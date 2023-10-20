@@ -25,8 +25,10 @@
     color: white;
     font-weight:600;
     /* border: 1px solid gray; */
-   
-    margin-top: -10px;
+    font-family: 'Poppins', sans-serif;
+   border-radius: 4px;
+    /* width: 80px; */
+    margin-top: -20px !important;
     width: 80px;
 }
 
@@ -52,7 +54,7 @@
 
 .status-failed{
     font-size: .7rem;
-    padding: 2px 19px;
+    padding: 7px 19px;
     background-color: #DC3545;
     color: white;
     font-weight:600;
@@ -60,7 +62,7 @@
     font-family: 'Poppins', sans-serif;
    border-radius: 4px;
     /* width: 80px; */
-    margin-top: -10px;
+    /* margin-top: -10px; */
 }
 .img-date-name-div{
     display: flex;
@@ -73,7 +75,8 @@
 .launch-stat-div{
     display: grid;
     place-items: center;
-    
+    line-height: .4;
+    margin-top: 10px;
 }
 .single-lounch-div{
     gap: 10px;
@@ -82,4 +85,25 @@
     padding: 10px 0;
     margin: 10px 0;
     /* box-shadow: 0px 0px 34px -3px rgba(0,0,0,0.1); */
+}
+.mission-name{
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+}
+.date-year{
+    font-family: 'Barlow', sans-serif;
+    font-weight: 500;
+}
+
+.paginations-div{
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+  
+
+}
+.paginations-btn{
+    color: #0D6EFD;
+    border: 1px solid bisque;
+    background: white;
 }
