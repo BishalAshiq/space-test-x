@@ -3,6 +3,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Col, Row } from 'react-bootstrap';
+import Image from 'next/image';
 
 
 
@@ -31,6 +32,11 @@ const feed = () => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'short' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
   
   return (
     <div>
@@ -38,8 +44,14 @@ const feed = () => {
     <Row>
         {currentLaunches.map((launch) => (
           <Col xs={12} md={6} lg={4} key={launch.flight_number}>
-            <div>{launch.rocket.rocket_name}</div>
-            <div>{launch.launch_date_utc}</div>
+            
+            <Image src={launch.links.mission_patch_small} width={100} height={100} alt=''/>
+              <div>Date: {formatDate(launch.launch_date_local)}, <span>{launch.launch_year}</span></div>
+              <div>{launch.mission_name}</div>
+              <div>{launch.rocket.rocket_name}</div>
+
+
+         
             {/* Add more data fields as needed */}
           </Col>
         ))}
