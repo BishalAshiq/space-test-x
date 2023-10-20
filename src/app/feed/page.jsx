@@ -99,6 +99,11 @@ const Feed = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentLaunches = filterLaunches().slice(indexOfFirstItem, indexOfLastItem);
 
+  const convertLaunchSuccessToString = (launchSuccess) => {
+    return launchSuccess ? 'Success' : 'Failure';
+  };
+  
+
   return (
     <div>
       <Container>
@@ -115,15 +120,33 @@ const Feed = () => {
         <div className="header-imputs-div">
           <Row>
             <Col xs={12} md={6} lg={6}>
-              <input
-                type="search"
-                placeholder="Search by Rocket Name"
-                value={searchFilter}
-                onChange={handleSearchChange}
-              />
+              <div className='search-div'>
+                  <input
+                  className='search-input'
+                    type="search"
+                    placeholder="Search.."
+                    value={searchFilter}
+                    onChange={handleSearchChange}
+                  />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" fill="white" className="bi bi-search search-icon" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+              </div>
             </Col>
+
+
             <Col xs={12} md={6} lg={6}>
               <Row>
+                
+                <Col xs={12} md={6} lg={6}>
+                  <Form.Select
+                    size="sm"
+                  >
+                    <option>By Launch Status</option>
+                  </Form.Select>
+                </Col>
+
+
                 <Col xs={12} md={6} lg={6}>
                   <Form.Select
                     size="sm"
@@ -145,10 +168,23 @@ const Feed = () => {
           <Row>
             {currentLaunches.map((launch) => (
               <Col xs={12} md={6} lg={4} key={launch.flight_number}>
-                <img src={launch.links.mission_patch_small} width={100} height={100} alt="" />
-                <div>Date: {formatDate(launch.launch_date_local)}, <span>{launch.launch_year}</span></div>
-                <div>{launch.mission_name}</div>
-                <div>{launch.rocket.rocket_name}</div>
+                <div className='single-lounch-div'>
+                  <div className='img-date-name-div'>
+                      <img className='rocke-image' src={launch.links.mission_patch_small} width={100} height={100} alt="" />
+                      <p>Date: {formatDate(launch.launch_date_local)}, <span>{launch.launch_year}</span></p>
+                      <h5>{launch.mission_name}</h5>
+                      <p>{launch.rocket.rocket_name}</p>
+                  </div>
+                  <div className='launch-stat-div'>
+                       <p>Launch Status: </p>
+                      {launch.launch_success ? (
+                      <p ><span className='status-success'> Success</span> </p> 
+                      ) : (
+                        <p className='status-failed'>Faild</p>
+                      )}
+                  </div>
+  
+                </div>
               </Col>
             ))}
           </Row>
