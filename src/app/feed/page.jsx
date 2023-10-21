@@ -77,7 +77,7 @@ const Feed = () => {
       );
       
     }
-    console.log("Filtered Launches (after date filter):", filteredLaunches);
+    console.log("Filtered Launches ", filteredLaunches);
 
     if (showUpcoming) {
       const today = new Date();
