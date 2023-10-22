@@ -1,4 +1,5 @@
 
+
 #### This is a Space-X-test project. Created by Next.js 
 
 This is live server (https://test-space-x.netlify.app)
@@ -20,11 +21,18 @@ Made the page responsive with extra two displa, Tab + mobile.
 
 Data can be show by search by it's rocket name
 
+# Note
+There are no last week or last month or last year data on API. and i haven't found on 
+![last Year](./public/last_year.png)
+![Year](./public/year.png)
+
+
 It can show launch status ( Failure, Success )
 
 Launch date also data can get on consol. 
 
-All upcoming data also show
+All upcoming data also cannot show, becasue those data are not in here.
+![Upcomming](./public/upcommig.png)
 
 Added paginations, Only 9 itmes show each page.
 
